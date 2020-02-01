@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using UnityEngine.Audio;
 
 public struct MusicNote
 {
@@ -18,9 +19,8 @@ public class SoundManager : MonoBehaviour
     private static Dictionary<string, List<List<MusicNote>>> tracks = new Dictionary<string, List<List<MusicNote>>>();
     private static AudioSource musicSource;
     private int bpm = 0;
-    private string currentTrack = "";
 
-    public string CurrentTrack { get { return currentTrack; } }
+    public AudioMixer audioMixer;
 
     public static SoundManager Instance
     {
@@ -144,31 +144,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public float PlaySound(string path)
-    {
-        AudioSource aus = GetAudioSource();
-        aus.clip = Resources.Load<AudioClip>(path);
-        aus.pitch = 1f;
-        aus.Play();
-        aus.gameObject.name = aus.clip.name;
-        return aus.clip.length;
-    }
-
-    public void PlayMusic(string track)
-    {
-        if (currentTrack == track && !musicSource.isPlaying)
-        {
-            musicSource.Play();
-        }
-        else if (currentTrack == track) return;
-
-        currentTrack = track;
-        musicSource.clip = Resources.Load<AudioClip>(track);
-        musicSource.volume = 0.03f;
-        musicSource.loop = true;
-        musicSource.Play();
-    }
-
     public void StopAudio()
     {
         foreach (GameObject audioSource in audioSources)
@@ -182,14 +157,28 @@ public class SoundManager : MonoBehaviour
         musicSource.Stop();
     }
 
-    public void PlaySound(string name, float volume)
+    public float PlaySound(string name, float volume = 1.0f, AudioMixerGroup mixerGroup = null)
     {
         AudioClip ac = Resources.Load<AudioClip>(name);
         GameObject go = new GameObject();
         AudioSource aus = go.AddComponent<AudioSource>();
+        aus.outputAudioMixerGroup = mixerGroup;
         aus.clip = ac;
         aus.volume = volume;
         aus.Play();
-        Destroy(go, aus.clip.length);
+        Destroy(go, aus.clip.length + 0.1f);
+        return aus.clip.length;
+    }
+
+    public float PlaySound(AudioClip ac, float volume = 1.0f, AudioMixerGroup mixerGroup = null)
+    {
+        GameObject go = new GameObject();
+        AudioSource aus = go.AddComponent<AudioSource>();
+        aus.outputAudioMixerGroup = mixerGroup;
+        aus.clip = ac;
+        aus.volume = volume;
+        aus.Play();
+        Destroy(go, aus.clip.length + 0.1f);
+        return aus.clip.length;
     }
 }
