@@ -8,7 +8,14 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     /// </summary>
     public class Standing : Movable
     {
-        private const float jumpAcceleration = 5F;
+        private float jumpAcceleration
+        {
+            get
+            {
+                return gameObject.GetComponent<Player>().JumpSpeed;
+            }
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

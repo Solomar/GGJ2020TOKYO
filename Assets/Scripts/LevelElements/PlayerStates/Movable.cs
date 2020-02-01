@@ -19,7 +19,13 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// <summary>
         /// The player's horizontal motion speed.
         /// </summary>
-        private const float walkingSpeed = 1F;
+        private float walkingSpeed
+        {
+            get
+            {
+                return gameObject.GetComponent<Player>().WalkingSpeed;
+            }
+        }
 
         private bool isOnTheFloor, hasGotOffTheFloor;
 

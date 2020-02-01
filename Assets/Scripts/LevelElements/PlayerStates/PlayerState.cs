@@ -29,7 +29,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         protected void ChangeTo<T>() where T : PlayerState
         {
 #if UNITY_EDITOR
-            Debug.Log($"-> {typeof(T).Name}");
+            Debug.Log($"Player FSM: {this.GetType().Name} -> {typeof(T).Name}");
 #endif
 
             Destroy(this);
