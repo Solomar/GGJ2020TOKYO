@@ -6,10 +6,18 @@ public enum ObjectNames
 {
     Computer,
     Sofa,
-    Picture_01,
+    Picture21,
+    Picture22,
     TV,
+    TV_Antenna,
     Broom,
     Fireplace,
     Bathtub,
-    Corgi
+    Corgi,
+    Radio,
+    Cabinet,
+    Candle,
+    FishL,
+    FishR,
+    Duck
 }
