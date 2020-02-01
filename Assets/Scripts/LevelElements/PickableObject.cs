@@ -9,16 +9,28 @@ namespace Assets.Scripts.LevelElements
     /// </summary>
     public class PickableObject : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private RigidbodyType2D originalBodyType;
+        public void OnPickUp()
         {
-
+            var rb = GetComponent<Rigidbody2D>();
+            if(rb != null)
+            {
+                this.originalBodyType = rb.bodyType;
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.simulated = false;
+                // Reset the rotation
+                rb.transform.localRotation = new Quaternion();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        public void OnPutDown()
         {
-
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.bodyType = this.originalBodyType;
+                rb.simulated = true;
+            }
         }
     }
 }

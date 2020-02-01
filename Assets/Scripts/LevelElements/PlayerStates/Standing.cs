@@ -44,7 +44,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             {
                 // Go up and change the state
                 var rb = gameObject.GetComponent<Rigidbody2D>();
-                rb.velocity = new Vector2(rb.velocity.x, jumpAcceleration);
+                rb.AddForce(new Vector2(rb.velocity.x, jumpAcceleration), ForceMode2D.Impulse);
 
                 ChangeTo<Aerial>();
             }
@@ -60,10 +60,33 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// </summary>
         void ProcessActButton()
         {
+            var player = GetComponent<Player>();
 
             // put down if the player already has something
-
-            // pick up if there is a PickableObject in front of the player
+            if (player.HoldingObject != null)
+            {
+                player.PutDown();
+                return;
+            }
+            // Search a PickableObject in front of the player character
+            var pickRange = player.transform.Find("PickPoint").GetComponent<Collider2D>();
+            RaycastHit2D? nearestPickable = null;
+            foreach (var objInFront in Physics2D.RaycastAll(pickRange.gameObject.transform.position,
+                player.CurrentDirection == Player.Direction.Left ? Vector2.left : Vector2.right,
+                0.75F, LayerMask.GetMask(player.LayersForPickableObjects)))
+            {
+                Debug.Log(objInFront.collider.gameObject.name);
+                if (objInFront.collider.GetComponentInParent<PickableObject>() == null)
+                    continue;
+                if (nearestPickable?.distance >= objInFront.distance)
+                    continue;
+                nearestPickable = objInFront;
+            }
+            // Pick it up if one has found
+            if (nearestPickable != null)
+            {
+                player.PickUp(nearestPickable.Value.collider.GetComponentInParent<PickableObject>());
+            }
         }
     }
 }

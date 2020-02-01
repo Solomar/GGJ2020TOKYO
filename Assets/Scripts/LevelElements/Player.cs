@@ -29,6 +29,11 @@ namespace Assets.Scripts.LevelElements
         public string ActButtonName = "Fire1";
 
         /// <summary>
+        /// Names of layers which pickable objects should be on.
+        /// </summary>
+        public string[] LayersForPickableObjects = { "Furniture", "HouseItem", "Mountable" };
+
+        /// <summary>
         /// The player's direction. Used to choose a sprite, the object which the player acts (e.g. pickup).
         /// </summary>
         public enum Direction
@@ -51,10 +56,22 @@ namespace Assets.Scripts.LevelElements
             }
             set
             {
+                var holder = gameObject.transform.Find("HoldingObject");
+                // Release the holding object if value is set to null
+                if (value == null)
+                {
+                    //FIXME: Should the parent be as same as the player's?
+                    this.HoldingObject.transform.SetParent(this.GetComponent<Player>().transform.parent);
+                    holder.gameObject.SetActive(false);
+                    return;
+                }
                 if (this.HoldingObject != null)
                 {
                     throw new System.InvalidOperationException($"The player is already holding {this.HoldingObject.GetType().Name}.");
                 }
+                holder.gameObject.SetActive(true);
+                value.transform.SetParent(holder);
+                value.transform.localPosition = Vector2.zero;
             }
         }
 
@@ -71,6 +88,29 @@ namespace Assets.Scripts.LevelElements
             {
                 this.CurrentState = gameObject.AddComponent<Assets.Scripts.LevelElements.PlayerStates.Standing>();
             }
+        }
+
+        /// <summary>
+        /// Pick up an <see cref="PickableObject"/>.
+        /// </summary>
+        /// <param name="obj"></param>
+        public void PickUp(PickableObject obj)
+        {
+            this.HoldingObject = obj;
+            obj.OnPickUp();
+        }
+
+        /// <summary>
+        /// Put down the object the player is picked up and holding.
+        /// </summary>
+        public void PutDown()
+        {
+            var obj = this.HoldingObject;
+            if (obj == null)
+                return;
+
+            this.HoldingObject = null;
+            obj.OnPutDown();
         }
     }
 }
