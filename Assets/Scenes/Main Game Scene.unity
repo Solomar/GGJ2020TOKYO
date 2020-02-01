@@ -1344,7 +1344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1294193611
 Transform:
   m_ObjectHideFlags: 0
@@ -3745,18 +3745,6 @@ PrefabInstance:
       propertyPath: m_singerFrontSpriteRenderer
       value: 
       objectReference: {fileID: 337563020}
-    - target: {fileID: 7314279076358168875, guid: ec96990ab32586f468e308a86e85d3b3,
-        type: 3}
-      propertyPath: m_openedMouthSinger
-      value: 
-      objectReference: {fileID: 21300000, guid: ece6805e9b4fade44a23c92be75e3291,
-        type: 3}
-    - target: {fileID: 7314279076358168875, guid: ec96990ab32586f468e308a86e85d3b3,
-        type: 3}
-      propertyPath: m_closedMouthSinger
-      value: 
-      objectReference: {fileID: 21300000, guid: 335bab6f2b94dcb4eba03670e3dbb7e1,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec96990ab32586f468e308a86e85d3b3, type: 3}
 --- !u!1001 &8182692836711949335

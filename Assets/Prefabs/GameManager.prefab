@@ -105,9 +105,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd86d76665e26e4183c759fbc454a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_openedMouthSinger: {fileID: 21300000, guid: ece6805e9b4fade44a23c92be75e3291,
+    type: 3}
+  m_closedMouthSinger: {fileID: 21300000, guid: 335bab6f2b94dcb4eba03670e3dbb7e1,
+    type: 3}
   m_zoomedInFieldOfView: 60
   m_zoomedOutFieldOfView: 80
   m_cameraZoomedOutPosition: {fileID: 7314279075618317296}
   m_playerCharacterTransform: {fileID: 0}
   m_singerBackSpriteRenderer: {fileID: 0}
   m_singerFrontSpriteRenderer: {fileID: 0}
+  m_automatoneClips:
+  - {fileID: 8300000, guid: c3c70ec5400ae4b40863ecf44654e6d5, type: 3}
+  - {fileID: 8300000, guid: 85a9117f153385846a21cb8e7cf60f85, type: 3}
+  - {fileID: 8300000, guid: 494dca1515f4f954d9613bfcb81c248f, type: 3}
+  - {fileID: 8300000, guid: faf9337012397ec4e84f653ccc40369a, type: 3}
+  - {fileID: 8300000, guid: ae87532fd72400040a736a0632cb834c, type: 3}
+  - {fileID: 8300000, guid: 3e37a75652f46de44a754b2fe4728510, type: 3}
+  - {fileID: 8300000, guid: 481129f83bb7efe4e9c140efe4ddb854, type: 3}
+  - {fileID: 8300000, guid: 79c68d3f52f0e5947963c130f693fd68, type: 3}
+  - {fileID: 8300000, guid: ea4c642a82c4868439e2c816c356e0d8, type: 3}
+  m_coughingClips:
+  - {fileID: 8300000, guid: 224a34123c732ed4b8c5de64617887ea, type: 3}
+  - {fileID: 8300000, guid: 000ef750071dde74cb19cc5fe906f711, type: 3}
+  - {fileID: 8300000, guid: 9f0048e2a44dce24cbe9028c7a293c28, type: 3}
+  m_badSingingClips:
+  - {fileID: 8300000, guid: 0623687efe64ec644aae1821de3c1c7e, type: 3}
+  - {fileID: 8300000, guid: 4016f139f4ef66d4e8ee27891547e3c9, type: 3}
+  - {fileID: 8300000, guid: c24f1356cf33b19489d3a8c01aedb776, type: 3}
+  m_badPitchClip:
+  - {fileID: 8300000, guid: 3bab32a17f0efbc4c8d211489ca3809f, type: 3}
+  - {fileID: 8300000, guid: 37be982754f54df499330929b1d85fa8, type: 3}
+  - {fileID: 8300000, guid: 483de48ec2a87344986a7a53076d387a, type: 3}
+  - {fileID: 8300000, guid: 444bd7a512ac4594ab6d53b0f10e7632, type: 3}
