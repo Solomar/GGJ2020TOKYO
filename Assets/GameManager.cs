@@ -6,6 +6,9 @@ using System.Linq;
 // Very basic game manager lol
 public class GameManager : MonoBehaviour
 {
+    public Sprite m_openedMouthSinger;
+    public Sprite m_closedMouthSinger;
+
     public float m_zoomedInFieldOfView;
     public float m_zoomedOutFieldOfView;
 
@@ -24,6 +27,19 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer m_singerBackSpriteRenderer;
     [SerializeField]
     private SpriteRenderer m_singerFrontSpriteRenderer;
+
+    /// <summary>
+    /// Singer sounds lists
+    /// </summary>
+    /// 
+    [SerializeField]
+    private AudioClip[] m_automatoneClips;
+    [SerializeField]
+    private AudioClip[] m_coughingClips;
+    [SerializeField]
+    private AudioClip[] m_badSingingClips;
+    [SerializeField]
+    private AudioClip[] m_badPitchClip;
 
     public static GameManager Instance
     {
@@ -52,6 +68,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
             m_zoomingOut = !m_zoomingOut;
 
+        if (Input.GetMouseButtonUp(1))
+            OpenSingerMouth();
+
+        if (Input.GetMouseButtonUp(2))
+            CloseSingerMouth();
+
         if (m_zoomingOut)
         {
             m_zoomProgress += Time.deltaTime / 2.0f;
@@ -78,6 +100,18 @@ public class GameManager : MonoBehaviour
         m_zoomingOut = false;
     }
 
+    public void OpenSingerMouth()
+    {
+        m_singerFrontSpriteRenderer.sprite = m_openedMouthSinger;
+        m_singerBackSpriteRenderer.sprite = m_openedMouthSinger;
+    }
+
+    public void CloseSingerMouth()
+    {
+        m_singerFrontSpriteRenderer.sprite = m_closedMouthSinger;
+        m_singerBackSpriteRenderer.sprite = m_closedMouthSinger;
+    }
+
     public void ObjectPlacedCorrectly()
     {
         foreach(HouseholdObjectLocation objectLocation in m_allObjectLocationInScene)
@@ -92,7 +126,7 @@ public class GameManager : MonoBehaviour
     {
         m_singerFrontLayerAlphaValue = Mathf.SmoothStep(0.0f, 1.0f, Mathf.Clamp01(m_zoomProgress));
         m_singerFrontSpriteRenderer.color = new Color(1f, 1f, 1f, m_singerFrontLayerAlphaValue);
-
+        m_singerBackSpriteRenderer.color = new Color(1f, 1f, 1f, m_singerFrontLayerAlphaValue);
         Camera.main.fieldOfView = Mathf.SmoothStep(m_zoomedInFieldOfView, m_zoomedOutFieldOfView, Mathf.Clamp01(m_zoomProgress));
     
         Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
