@@ -49,18 +49,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(m_zoomingOut)
+        if (Input.GetMouseButtonUp(0))
+            m_zoomingOut = !m_zoomingOut;
+
+        if (m_zoomingOut)
         {
-            m_zoomProgress += Time.deltaTime;
-
-            // Alpha Value Change
-            m_singerFrontLayerAlphaValue = Mathf.Lerp(0.0f, 1.0f, Mathf.Clamp01(m_zoomProgress - 0.1f));
-            m_singerFrontSpriteRenderer.color = new Color(1f, 1f, 1f, m_singerFrontLayerAlphaValue);
-
-            Camera.main.fieldOfView = Mathf.Lerp(m_zoomedInFieldOfView, m_zoomedOutFieldOfView, Mathf.Clamp01(m_zoomProgress - 0.1f));
-            Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
+            m_zoomProgress += Time.deltaTime / 2.0f;
+            SingerCameraPan();
         }
         else if(m_zoomProgress > 0.0f)
+        {
+            m_zoomProgress = Mathf.Clamp01(m_zoomProgress - Time.deltaTime);
+            SingerCameraPan();
+        }
+        else
         {
 
         }
@@ -69,7 +71,11 @@ public class GameManager : MonoBehaviour
     public void ZoomOut()
     {
         m_zoomingOut = true;
-        
+    }
+
+    public void ZoomIn()
+    {
+        m_zoomingOut = false;
     }
 
     public void ObjectPlacedCorrectly()
@@ -80,6 +86,16 @@ public class GameManager : MonoBehaviour
                 break;
         }
         Success();
+    }
+
+    private void SingerCameraPan()
+    {
+        m_singerFrontLayerAlphaValue = Mathf.SmoothStep(0.0f, 1.0f, Mathf.Clamp01(m_zoomProgress));
+        m_singerFrontSpriteRenderer.color = new Color(1f, 1f, 1f, m_singerFrontLayerAlphaValue);
+
+        Camera.main.fieldOfView = Mathf.SmoothStep(m_zoomedInFieldOfView, m_zoomedOutFieldOfView, Mathf.Clamp01(m_zoomProgress));
+    
+        Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
     }
 
     private void Success()
