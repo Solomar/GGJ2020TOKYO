@@ -66,7 +66,12 @@
     <Compile Include="Assets\Scripts\BaseObjectEventManager.cs" />
     <Compile Include="Assets\Scripts\HouseholdObjectLocation.cs" />
     <Compile Include="Assets\Scripts\HouseholdObjectTriggerHandler.cs" />
-    <Compile Include="Assets\Scripts\LevelElements\Player\Movable.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\BottomChecker.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\Player.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\PlayerStates\Aerial.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\PlayerStates\Movable.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\PlayerStates\PlayerState.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\PlayerStates\Standing.cs" />
     <Compile Include="Assets\Scripts\ObjectNames.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
