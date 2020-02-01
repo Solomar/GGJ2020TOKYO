@@ -66,15 +66,16 @@ namespace Assets.Scripts.LevelElements.PlayerStates
 
             //FIXME: 遊びの調節
             // Turn and move left
+            var player = GetComponent<Player>();
             if (axis < -0.1)
             {
-                this.CurrentDirection = Direction.Left;
+                player.CurrentDirection = Player.Direction.Left;
                 rigidBody.velocity = new Vector2(-walkingSpeed, rigidBody.velocity.y);
             }
             // Right
             else if (axis > 0.1)
             {
-                this.CurrentDirection = Direction.Right;
+                player.CurrentDirection = Player.Direction.Right;
                 rigidBody.velocity = new Vector2(+walkingSpeed, rigidBody.velocity.y);
             }
             // Stop

@@ -10,7 +10,7 @@ namespace Assets.Scripts.LevelElements
     public class BottomChecker : MonoBehaviour
     {
         /// <summary>
-        /// If the element is landing.
+        /// Gets if the element is landing.
         /// </summary>
         public bool Landing
         {
@@ -21,13 +21,13 @@ namespace Assets.Scripts.LevelElements
         private bool gotOnLand, isOnLand, gotNotOnLand;
 
         /// <summary>
-        /// Check the collision is a "land".
+        /// Check the <paramref name="collider"/> is a "land".
         /// </summary>
-        /// <param name="collision"></param>
+        /// <param name="collider"></param>
         /// <returns></returns>
         private static bool IsCollisionLand(Collider2D collider)
         {
-            //FIXME
+            //FIXME: すり抜けたいものが生まれたら常時trueを解除
             return true || collider.CompareTag("Land");
         }
 

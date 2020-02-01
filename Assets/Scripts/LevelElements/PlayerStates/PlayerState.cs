@@ -9,20 +9,6 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     public abstract class PlayerState : MonoBehaviour
     {
         /// <summary>
-        /// The player's direction. Used to choose a sprite, the object which the player acts (e.g. pickup).
-        /// </summary>
-        public enum Direction
-        {
-            Right,
-            Left,
-        };
-
-        /// <summary>
-        /// The player's now direction.
-        /// </summary>
-        public Direction CurrentDirection;
-
-        /// <summary>
         /// Changes the player's state.
         /// </summary>
         /// <typeparam name="T"></typeparam>

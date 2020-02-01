@@ -29,8 +29,18 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 return;
             }
 
+            this.ProcessInput();
+        }
+
+        /// <summary>
+        /// Process Jump&amp;Act(Fire) button input.
+        /// Note: This function does as dirrent as that <see cref="Assets.Scripts.LevelElements.PlayerStates.Movable"/> does.
+        /// </summary>
+        void ProcessInput()
+        {
+            var player = GetComponent<Player>();
             // If the player pushed the Jump button
-            if(Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown(player.JumpButtonName))
             {
                 // Go up and change the state
                 var rb = gameObject.GetComponent<Rigidbody2D>();
@@ -38,6 +48,17 @@ namespace Assets.Scripts.LevelElements.PlayerStates
 
                 ChangeTo<Aerial>();
             }
+
+            if (Input.GetButtonDown(player.ActButtonName))
+            {
+                this.ProcessActButton();
+            }
         }
+
+        /// <summary>
+        /// Process when the player has pressed the Act Button.
+        /// </summary>
+        void ProcessActButton()
+        { }
     }
 }
