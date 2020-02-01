@@ -17,8 +17,6 @@ public class SoundManager : MonoBehaviour
     private static SoundManager instance;
     private List<GameObject> audioSources = new List<GameObject>();
     private static Dictionary<string, List<List<MusicNote>>> tracks = new Dictionary<string, List<List<MusicNote>>>();
-    private static AudioSource musicSource;
-    private int bpm = 0;
 
     public AudioMixer audioMixer;
 
@@ -32,8 +30,6 @@ public class SoundManager : MonoBehaviour
                 DontDestroyOnLoad(sound);
                 SoundManager s = sound.AddComponent<SoundManager>();
                 instance = s;
-
-                musicSource = sound.AddComponent<AudioSource>();
             }
             return instance;
         }
@@ -150,11 +146,6 @@ public class SoundManager : MonoBehaviour
         {
             if (audioSource.GetComponent<AudioSource>().isPlaying) audioSource.GetComponent<AudioSource>().Stop();
         }
-    }
-
-    public void StopMusic()
-    {
-        musicSource.Stop();
     }
 
     public float PlaySound(string name, float volume = 1.0f, AudioMixerGroup mixerGroup = null)
