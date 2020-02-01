@@ -25,30 +25,30 @@ namespace Assets.Scripts.LevelElements
         /// </summary>
         /// <param name="collision"></param>
         /// <returns></returns>
-        private bool IsCollisionLand(Collision2D collision)
+        private static bool IsCollisionLand(Collider2D collider)
         {
             //FIXME
-            return true || collision.otherCollider.tag == "Land";
+            return true || collider.CompareTag("Land");
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            Debug.Log("aaaa");
-            if (IsCollisionLand(collision))
+            //Debug.Log("aaaa");
+            if (IsCollisionLand(collider))
                 this.gotOnLand = true;
         }
 
-        private void OnCollisionStay2D(Collision2D collision)
+        private void OnTriggerStay2D(Collider2D collider)
         {
-            Debug.Log("bbbb");
-            if (IsCollisionLand(collision))
+            //Debug.Log("bbbb");
+            if (IsCollisionLand(collider))
                 this.isOnLand = true;
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnTriggerExit2D(Collider2D collider)
         {
-            Debug.Log("cccc");
-            if (IsCollisionLand(collision))
+            //Debug.Log("cccc");
+            if (IsCollisionLand(collider))
             {
                 this.gotNotOnLand = true;
             }
@@ -56,12 +56,15 @@ namespace Assets.Scripts.LevelElements
 
         private void Update()
         {
-            Debug.Log($"{gotOnLand} {isOnLand} {gotNotOnLand}");
+            //Debug.Log($"{gotOnLand} {isOnLand} {gotNotOnLand}");
             // set the collision status and reset the status flags
             if (gotOnLand || isOnLand)
                 this.Landing = true;
             else if (gotNotOnLand)
                 this.Landing = false;
+        }
+        private void LateUpdate()
+        {
             gotOnLand = isOnLand = gotNotOnLand = false;
         }
     }

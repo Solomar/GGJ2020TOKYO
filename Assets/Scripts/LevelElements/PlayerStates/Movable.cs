@@ -34,24 +34,21 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         protected virtual void Update()
         {
             ProcessInput();
-
-            // TODO: make Aerial state and change to it when the player isn't on a floor
-            ProcessLanding();
             // TODO: update the GameObject's sprite and more...
         }
 
-        private void ProcessLanding()
-        {
-            BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
+        //private void ProcessLanding()
+        //{
+        //    BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
 
-            // Check that the player is standing or has landed
-            if (bottomChecker.Landing)
-            {
-                var rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        //    // Check that the player is standing or has landed
+        //    if (bottomChecker.Landing)
+        //    {
+        //        var rigidBody = gameObject.GetComponent<Rigidbody2D>();
 
-                rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
-            }
-        }
+        //        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+        //    }
+        //}
 
         /// <summary>
         /// Process inputs from the player.
@@ -80,30 +77,5 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 rigidBody.velocity = new Vector2(0F, rigidBody.velocity.y);
             }
         }
-
-        //private void OnTriggerEnter2D(Collider2D collision)
-        //{
-        //    //FIXME: If the collider is the player's bottom
-        //    if (true)
-        //    {
-        //        // ほんらいこのくだりはAerialにやｒせるもの（それができるまでここでテスト)
-        //        //// Snap the player's x coordinate to the nearest integer
-        //        //var transform = gameObject.GetComponent<Transform>();
-        //        //transform.position = new Vector3(transform.position.x, 0F, transform.position.z);
-
-        //        // Check that the player is standing or has landed
-        //        var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-
-        //        rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
-        //    }
-        //}
-
-        //private void OnTriggerStay2D(Collider2D collision)
-        //{
-        //    // Check that the player is standing or has landed
-        //    var rigidBody = gameObject.GetComponent<Rigidbody2D>();
-
-        //    rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
-        //}
     }
 }

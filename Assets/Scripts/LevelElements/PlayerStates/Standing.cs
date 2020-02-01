@@ -8,22 +8,27 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     /// </summary>
     public class Standing : Movable
     {
-        protected override void Start()
-        {
-            base.Start();
-
-            // Set the player doesn't fall
-            GetComponent<Rigidbody2D>().gravityScale = 0F;
-        }
-
+        private const float jumpAcceleration = 5F;
+        // Update is called once per frame
         protected override void Update()
         {
             base.Update();
 
-            // Check that the player is standing or has landed
+            // Check that the player character is standing or has landed
             BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
             if (!bottomChecker.Landing)
             {
+                ChangeTo<Aerial>();
+                return;
+            }
+
+            // If the player pushed the Jump button
+            if(Input.GetButtonDown("Jump"))
+            {
+                // Go up and change the state
+                var rb = gameObject.GetComponent<Rigidbody2D>();
+                rb.velocity = new Vector2(rb.velocity.x, jumpAcceleration);
+
                 ChangeTo<Aerial>();
             }
         }

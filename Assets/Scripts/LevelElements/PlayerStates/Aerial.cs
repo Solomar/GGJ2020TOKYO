@@ -8,14 +8,6 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     /// </summary>
     public class Aerial : Movable
     {
-        protected override void Start()
-        {
-            base.Start();
-
-            // Set the player falls
-            GetComponent<Rigidbody2D>().gravityScale = 1F;
-        }
-
         // Update is called once per frame
         protected override void Update()
         {
@@ -23,7 +15,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
 
             // Check that the player is standing or has landed
             BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
-            if (bottomChecker.Landing)
+            if (bottomChecker.Landing && gameObject.GetComponent<Rigidbody2D>().velocity.y < +0.01F)
             {
                 ChangeTo<Standing>();
             }
