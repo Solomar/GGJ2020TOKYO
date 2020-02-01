@@ -42,6 +42,22 @@ namespace Assets.Scripts.LevelElements
         /// </summary>
         public Direction CurrentDirection = Direction.Right;
 
+        private PickableObject holdingObject;
+        public PickableObject HoldingObject
+        {
+            get
+            {
+                return gameObject.transform.Find("HoldingObject").GetComponentInChildren<PickableObject>();
+            }
+            set
+            {
+                if (this.HoldingObject != null)
+                {
+                    throw new System.InvalidOperationException($"The player is already holding {this.HoldingObject.GetType().Name}.");
+                }
+            }
+        }
+
         /// <summary>
         /// The player's currfent state, a part of a FSM.
         /// </summary>
@@ -55,12 +71,6 @@ namespace Assets.Scripts.LevelElements
             {
                 this.CurrentState = gameObject.AddComponent<Assets.Scripts.LevelElements.PlayerStates.Standing>();
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
     }
 }

@@ -59,6 +59,11 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// Process when the player has pressed the Act Button.
         /// </summary>
         void ProcessActButton()
-        { }
+        {
+
+            // put down if the player already has something
+
+            // pick up if there is a PickableObject in front of the player
+        }
     }
 }
