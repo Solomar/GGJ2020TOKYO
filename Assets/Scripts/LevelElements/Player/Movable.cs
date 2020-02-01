@@ -9,6 +9,8 @@ namespace Assets.Scripts.LevelElements.Player
 {
     /// <summary>
     /// The Player's state that the player is standing or walking.
+    /// 
+    /// The player with the state can pick or put an PickableObject.
     /// </summary>
     public class Movable : MonoBehaviour
     {
@@ -19,8 +21,8 @@ namespace Assets.Scripts.LevelElements.Player
         /// </summary>
         public enum Direction
         {
-            Left,
             Right,
+            Left,
         };
         
         /// <summary>
@@ -39,6 +41,7 @@ namespace Assets.Scripts.LevelElements.Player
         {
             ProcessInput();
 
+            // TODO: make Aerial state and change to it when the player isn't on a floor
             // TODO: update the GameObject's sprite and more...
         }
 
@@ -54,14 +57,12 @@ namespace Assets.Scripts.LevelElements.Player
             if (axis < -0.5)
             {
                 this.CurrentDirection = Direction.Left;
-                // FIXME: the movement speed
                 rigidBody.velocity = -walkingSpeed;
             }
             // Right
             else if (axis > 0.5)
             {
                 this.CurrentDirection = Direction.Right;
-                // FIXME: the movement speed
                 rigidBody.velocity = walkingSpeed;
             }
             // Stop
