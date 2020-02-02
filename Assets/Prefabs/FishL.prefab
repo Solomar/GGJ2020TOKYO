@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6967879113007820184}
   - component: {fileID: 6967879113007820186}
   - component: {fileID: 6967879113007820189}
+  - component: {fileID: -7795779256934416460}
   m_Layer: 10
   m_Name: FishL
   m_TagString: ObjectiveObject
@@ -145,6 +146,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 0
+--- !u!114 &-7795779256934416460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967879113007820188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a945745ff39ea647854a8b9b5039577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6967879113663024387
 GameObject:
   m_ObjectHideFlags: 0

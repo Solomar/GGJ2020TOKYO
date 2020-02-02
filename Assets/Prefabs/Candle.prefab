@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 5356487090376527822}
   - component: {fileID: 5356487090376527820}
   - component: {fileID: 5356487090376527819}
+  - component: {fileID: 3692621581320738753}
   m_Layer: 9
   m_Name: Candle
   m_TagString: ObjectiveObject
@@ -215,3 +216,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 0
+--- !u!114 &3692621581320738753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356487090376527818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a945745ff39ea647854a8b9b5039577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
