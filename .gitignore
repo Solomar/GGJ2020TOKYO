@@ -1,4 +1,8 @@
+# Made by Unity automatically so unnecessary to be comitted
 Library/
 obj/
 Temp/
 .vs/
+/Assembly-CSharp.csproj
+/Assembly-CSharp-Editor.csproj
+/*.sln
