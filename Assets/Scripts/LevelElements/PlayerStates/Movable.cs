@@ -96,6 +96,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// </summary>
         void ProcessActButton()
         {
+            Debug.Log("acts");
             var player = GetComponent<Player>();
 
             // put down if the player already has something
@@ -109,7 +110,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             RaycastHit2D? nearestPickable = null;
             foreach (var objInFront in Physics2D.RaycastAll(pickRange.gameObject.transform.position,
                 player.CurrentDirection == Player.Direction.Left ? Vector2.left : Vector2.right,
-                0.75F, LayerMask.GetMask(player.LayersForPickableObjects)))
+                1.0f))
             {
                 Debug.Log(objInFront.collider.gameObject.name);
                 if (objInFront.collider.GetComponentInParent<PickableObject>() == null)
