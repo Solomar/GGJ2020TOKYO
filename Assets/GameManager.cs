@@ -41,13 +41,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource m_cleaningAudioSource;
     [SerializeField]
-    private AudioClip[] m_automatoneClips;
+    private AudioClip[] m_badSinging;
     [SerializeField]
-    private AudioClip[] m_coughingClips;
-    [SerializeField]
-    private AudioClip[] m_badSingingClips;
-    [SerializeField]
-    private AudioClip[] m_badPitchClip;
+    private AudioClip[] m_goodSinging;
     private float m_waitTimeBetweenSinging;
 
     public static GameManager Instance
@@ -82,14 +78,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-            m_zoomingOut = !m_zoomingOut;
-
-        if (Input.GetMouseButtonUp(1))
-            OpenSingerMouth();
-
-        if (Input.GetMouseButtonUp(2))
-            CloseSingerMouth();
+        // Debug Stuff!!
+        //if (Input.GetMouseButtonUp(0))
+        //    m_zoomingOut = !m_zoomingOut;
+        //if (Input.GetMouseButtonUp(1))
+        //    OpenSingerMouth();
+        //if (Input.GetMouseButtonUp(2))
+        //    CloseSingerMouth();
 
         if (m_zoomingOut)
         {
@@ -109,8 +104,10 @@ public class GameManager : MonoBehaviour
         m_waitTimeBetweenSinging -= Time.deltaTime;
         if(m_waitTimeBetweenSinging < 0.0f)
         {
-            m_waitTimeBetweenSinging = Random.Range(3.0f, 5.0f);
-            PlayBadSound();
+            if (Random.Range(0, 2) == 0)
+                PlayBadSound();
+            else
+                PlayGoodSound();
         }
     }
 
@@ -126,21 +123,16 @@ public class GameManager : MonoBehaviour
 
     public void PlayBadSound()
     {
-        switch(Random.Range(0,4))
-        {
-            case 0:
-                m_singerAudioSource.clip = m_automatoneClips[Random.Range(0, m_automatoneClips.Length)];
-                break;
-            case 1:
-                m_singerAudioSource.clip = m_coughingClips[Random.Range(0, m_coughingClips.Length)];
-                break;
-            case 2:
-                m_singerAudioSource.clip = m_badPitchClip[Random.Range(0, m_badPitchClip.Length)];
-                break;
-            case 3:
-                m_singerAudioSource.clip = m_badSingingClips[Random.Range(0, m_badSingingClips.Length)];
-                break;
-        }
+        m_singerAudioSource.clip = m_badSinging[Random.Range(0, m_badSinging.Length)];
+        m_waitTimeBetweenSinging = m_singerAudioSource.clip.length + Random.Range(1.0f, 3.0f);
+        m_singerAudioSource.Play();
+        StartCoroutine(SingNote(m_singerAudioSource.clip.length));
+    }
+
+    public void PlayGoodSound()
+    {
+        m_singerAudioSource.clip = m_goodSinging[Random.Range(0, m_goodSinging.Length)];
+        m_waitTimeBetweenSinging = m_singerAudioSource.clip.length + Random.Range(1.0f, 3.0f);
         m_singerAudioSource.Play();
         StartCoroutine(SingNote(m_singerAudioSource.clip.length));
     }

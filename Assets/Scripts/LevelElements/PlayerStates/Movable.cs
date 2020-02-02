@@ -96,7 +96,6 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// </summary>
         void ProcessActButton()
         {
-            Debug.Log("acts");
             var player = GetComponent<Player>();
 
             // put down if the player already has something
