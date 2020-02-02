@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Linq;
 
 namespace Assets.Scripts.LevelElements
 {
@@ -34,6 +34,11 @@ namespace Assets.Scripts.LevelElements
         public string[] LayersForPickableObjects = { "Furniture", "HouseItem", "Mountable" };
 
         /// <summary>
+        /// Names of layers which objects mounted on the player should be on.
+        /// </summary>
+        public string[] LayersForMountableObjects = { "Mountable" };
+
+        /// <summary>
         /// The player's direction. Used to choose a sprite, the object which the player acts (e.g. pickup).
         /// </summary>
         public enum Direction
@@ -52,7 +57,25 @@ namespace Assets.Scripts.LevelElements
         /// </summary>
         public Direction CurrentDirection = Direction.Right;
 
-        private PickableObject holdingObject;
+        private static string GetHierarchyPath(GameObject go)
+        {
+            return go.transform.parent != null ? GetHierarchyPath(go.transform.parent.gameObject) + "/" + go.name : go.name;
+        }
+
+        /// <summary>
+        /// The <see cref="HoldingObject"/>'s parent.
+        /// </summary>
+        private Transform objectHolder
+        {
+            get
+            {
+                return gameObject.transform.Find("HoldingObject");
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="PickableObject"/> holded by the <see cref="Player"/>.
+        /// </summary>
         public PickableObject HoldingObject
         {
             get
@@ -72,11 +95,14 @@ namespace Assets.Scripts.LevelElements
                 }
                 if (this.HoldingObject != null)
                 {
-                    throw new System.InvalidOperationException($"The player is already holding {this.HoldingObject.GetType().Name}.");
+                    throw new System.InvalidOperationException($"The player is already holding {GetHierarchyPath(this.HoldingObject.gameObject)}.");
                 }
                 holder.gameObject.SetActive(true);
                 value.transform.SetParent(holder);
                 value.transform.localPosition = Vector2.zero;
+
+                // Set the hold position
+                UpdateHoldPosition();
             }
         }
 
@@ -85,13 +111,44 @@ namespace Assets.Scripts.LevelElements
         /// </summary>
         private Assets.Scripts.LevelElements.PlayerStates.PlayerState CurrentState;
 
-        // Use this for initialization
+        /// Init some member variables.
         void Start()
         {
             // The default state is Standing
             if (this.CurrentState == null)
             {
                 this.CurrentState = gameObject.AddComponent<Assets.Scripts.LevelElements.PlayerStates.Standing>();
+            }
+        }
+
+        /// <summary>
+        /// Update the the holding position, which should be in front of the player.
+        /// </summary>
+        private void Update()
+        {
+            UpdateHoldPosition();
+        }
+
+        /// <summary>
+        /// Update the <see cref="objectHolder"/>'s position.
+        /// </summary>
+        private void UpdateHoldPosition()
+        {
+            var obj = this.HoldingObject;
+            if (obj == null)
+                return;
+            var holder = this.objectHolder;
+
+            if (LayersForMountableObjects.Any(layer => obj.gameObject.layer == SortingLayer.GetLayerValueFromName(layer)))
+            {
+                holder.transform.localPosition = transform.Find("HoldPositionTop").transform.localPosition;
+            }
+            else
+            {
+                var pos = transform.Find("HoldPositionRight").transform.localPosition;
+                if (this.CurrentDirection == Direction.Left)
+                    pos = new Vector3(-pos.x, pos.y, pos.z);
+                holder.transform.localPosition = pos;
             }
         }
 

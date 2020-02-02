@@ -922,11 +922,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1521376635317289976, guid: e3cbca77c8952084e82c551b5d32d4d4,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.542
-      objectReference: {fileID: 0}
     - target: {fileID: 1521376635317289982, guid: e3cbca77c8952084e82c551b5d32d4d4,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -996,6 +991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5097747611061127669, guid: e3cbca77c8952084e82c551b5d32d4d4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3cbca77c8952084e82c551b5d32d4d4, type: 3}
@@ -1088,13 +1088,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203448030374188014, guid: 535c103a811461a4194bec94839c6b56,
         type: 3}
-      propertyPath: m_Layer
-      value: 9
+      propertyPath: m_TagString
+      value: ObjectiveObject
       objectReference: {fileID: 0}
     - target: {fileID: 3203448030374188014, guid: 535c103a811461a4194bec94839c6b56,
         type: 3}
-      propertyPath: m_TagString
-      value: ObjectiveObject
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 535c103a811461a4194bec94839c6b56, type: 3}
