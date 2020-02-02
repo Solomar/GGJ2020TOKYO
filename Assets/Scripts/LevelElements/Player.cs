@@ -29,11 +29,6 @@ namespace Assets.Scripts.LevelElements
         public string ActButtonName = "Fire1";
 
         /// <summary>
-        /// Names of layers which pickable objects should be on.
-        /// </summary>
-        public string[] LayersForPickableObjects = { "Furniture", "HouseItem", "Mountable" };
-
-        /// <summary>
         /// Names of layers which objects mounted on the player should be on.
         /// </summary>
         public string[] LayersForMountableObjects = { "Mountable" };
@@ -141,7 +136,9 @@ namespace Assets.Scripts.LevelElements
                 return;
             var holder = this.objectHolder;
 
-            if (LayersForMountableObjects.Any(layer => obj.gameObject.layer == SortingLayer.GetLayerValueFromName(layer)))
+            if (LayersForMountableObjects.Any(
+                layer => obj.gameObject.layer == LayerMask.NameToLayer(layer)
+                ))
             {
                 holder.transform.localPosition = transform.Find("HoldPositionTop").transform.localPosition;
             }
