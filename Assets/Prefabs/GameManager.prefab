@@ -187,6 +187,7 @@ MonoBehaviour:
   m_singerFrontSpriteRenderer: {fileID: 0}
   m_windowArea: {fileID: 6023909193691519692}
   m_singerAudioSource: {fileID: 7193765262823500102}
+  m_winningAudio: {fileID: 0}
   m_cleaningAudioSource: {fileID: 0}
   m_badSinging:
   - {fileID: 8300000, guid: 224a34123c732ed4b8c5de64617887ea, type: 3}
@@ -215,6 +216,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa0e60bc3b4282146be5f99126c2ad3d, type: 3}
   - {fileID: 8300000, guid: e67ffcbc29e95e347846b1c0162c05bb, type: 3}
   - {fileID: 8300000, guid: 0309babd829eb9646ad4cda19bbf60c1, type: 3}
+  m_winClip: {fileID: 0}
 --- !u!1 &3784312289641086610
 GameObject:
   m_ObjectHideFlags: 0

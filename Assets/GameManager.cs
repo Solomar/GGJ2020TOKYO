@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private float m_singerFrontLayerAlphaValue;
     private float m_zoomProgress;
     private bool m_zoomingOut;
+    private bool m_win;
     [SerializeField]
     private Transform m_playerCharacterTransform;
     [SerializeField]
@@ -39,11 +40,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource m_singerAudioSource;
     [SerializeField]
+    private AudioSource m_winningAudio;
+    [SerializeField]
     private AudioSource m_cleaningAudioSource;
     [SerializeField]
     private AudioClip[] m_badSinging;
     [SerializeField]
     private AudioClip[] m_goodSinging;
+    [SerializeField]
+    private AudioClip m_winClip;
+
     private float m_waitTimeBetweenSinging;
 
     public static GameManager Instance
@@ -52,9 +58,6 @@ public class GameManager : MonoBehaviour
         {
             if (m_instance == null)
             {
-                GameObject gameManager = new GameObject("GameManager");
-                GameManager gm = gameManager.AddComponent<GameManager>();
-                m_instance = gm;
             }
             return m_instance;
         }
@@ -78,6 +81,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Space))
+            Win();
         // Debug Stuff!!
         //if (Input.GetMouseButtonUp(0))
         //    m_zoomingOut = !m_zoomingOut;
@@ -86,7 +91,7 @@ public class GameManager : MonoBehaviour
         //if (Input.GetMouseButtonUp(2))
         //    CloseSingerMouth();
 
-        if (m_zoomingOut)
+        if (m_zoomingOut || m_win)
         {
             m_zoomProgress += Time.deltaTime / 2.0f;
             SingerCameraPan();
@@ -101,14 +106,24 @@ public class GameManager : MonoBehaviour
             Camera.main.transform.position = m_playerCharacterTransform.position + m_cameraZoomedVector;
         }
 
-        m_waitTimeBetweenSinging -= Time.deltaTime;
-        if(m_waitTimeBetweenSinging < 0.0f)
+        if (!m_win)
         {
-            if (Random.Range(0, 2) == 0)
-                PlayBadSound();
-            else
-                PlayGoodSound();
+            m_waitTimeBetweenSinging -= Time.deltaTime;
+            if (m_waitTimeBetweenSinging < 0.0f)
+            {
+                if (Random.Range(0, 2) == 0)
+                    PlayBadSound();
+                else
+                    PlayGoodSound();
+            }
         }
+    }
+
+
+    public void Win()
+    {
+        m_win = true;
+        ZoomOut();
     }
 
     public void ZoomOut()
@@ -166,6 +181,7 @@ public class GameManager : MonoBehaviour
         Success();
     }
 
+    bool doOnce = true;
     private void SingerCameraPan()
     {
         m_singerFrontLayerAlphaValue = Mathf.SmoothStep(0.0f, 1.0f, Mathf.Clamp01(m_zoomProgress));
@@ -175,7 +191,15 @@ public class GameManager : MonoBehaviour
     
         Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
 
-        m_cleaningAudioSource.volume = Mathf.SmoothStep(1.0f, 0.02f, m_zoomProgress);
+        if (!m_win)
+            m_cleaningAudioSource.volume = Mathf.SmoothStep(1.0f, 0.02f, m_zoomProgress);
+        else if(doOnce)
+        {
+            doOnce = false;
+            m_cleaningAudioSource.Stop();
+            m_winningAudio.Play();
+            OpenSingerMouth();
+        }
     }
 
     private void Success()
