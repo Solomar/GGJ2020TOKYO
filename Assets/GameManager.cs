@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SpriteRenderer m_singerFrontSpriteRenderer;
 
+
+    [SerializeField]
+    private CharacterTriggerZone m_windowArea;
+
     /// <summary>
     /// Singer sounds lists
     /// </summary>
@@ -60,7 +64,14 @@ public class GameManager : MonoBehaviour
         m_allObjectLocationInScene = FindObjectsOfType<HouseholdObjectLocation>().ToList();
         m_zoomingOut = false;
         m_zoomProgress = 0.0f;
-        ZoomOut();
+        m_windowArea.AddObserverTriggerEnter(ZoomOut);
+        m_windowArea.AddObserverTriggerExit(ZoomIn);
+    }
+
+    private void OnDestroy()
+    {
+        m_windowArea.RemoveObserverTriggerEnter(ZoomOut);
+        m_windowArea.RemoveObserverTriggerExit(ZoomIn);
     }
 
     private void Update()
@@ -86,7 +97,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-
+            Camera.main.transform.position = m_playerCharacterTransform.position + m_cameraZoomedVector;
         }
     }
 
