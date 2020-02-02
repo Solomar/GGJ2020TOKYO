@@ -42,6 +42,11 @@ namespace Assets.Scripts.LevelElements
             Left,
         };
 
+        [SerializeField]
+        private AudioClip pickupClip;
+        [SerializeField]
+        private AudioClip dropClip;
+
         /// <summary>
         /// The player's now direction.
         /// </summary>
@@ -98,6 +103,7 @@ namespace Assets.Scripts.LevelElements
         {
             this.HoldingObject = obj;
             obj.OnPickUp();
+            SoundManager.Instance.PlaySound(pickupClip);
         }
 
         /// <summary>
@@ -111,6 +117,7 @@ namespace Assets.Scripts.LevelElements
 
             this.HoldingObject = null;
             obj.OnPutDown();
+            SoundManager.Instance.PlaySound(dropClip);
         }
     }
 }

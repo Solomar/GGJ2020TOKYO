@@ -28,18 +28,23 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SpriteRenderer m_singerFrontSpriteRenderer;
 
+
+    [SerializeField]
+    private CharacterTriggerZone m_windowArea;
+
     /// <summary>
     /// Singer sounds lists
     /// </summary>
     /// 
     [SerializeField]
-    private AudioClip[] m_automatoneClips;
+    private AudioSource m_singerAudioSource;
     [SerializeField]
-    private AudioClip[] m_coughingClips;
+    private AudioSource m_cleaningAudioSource;
     [SerializeField]
-    private AudioClip[] m_badSingingClips;
+    private AudioClip[] m_badSinging;
     [SerializeField]
-    private AudioClip[] m_badPitchClip;
+    private AudioClip[] m_goodSinging;
+    private float m_waitTimeBetweenSinging;
 
     public static GameManager Instance
     {
@@ -60,19 +65,26 @@ public class GameManager : MonoBehaviour
         m_allObjectLocationInScene = FindObjectsOfType<HouseholdObjectLocation>().ToList();
         m_zoomingOut = false;
         m_zoomProgress = 0.0f;
-        ZoomOut();
+        m_waitTimeBetweenSinging = 3.0f;
+        m_windowArea.AddObserverTriggerEnter(ZoomOut);
+        m_windowArea.AddObserverTriggerExit(ZoomIn);
+    }
+
+    private void OnDestroy()
+    {
+        m_windowArea.RemoveObserverTriggerEnter(ZoomOut);
+        m_windowArea.RemoveObserverTriggerExit(ZoomIn);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
-            m_zoomingOut = !m_zoomingOut;
-
-        if (Input.GetMouseButtonUp(1))
-            OpenSingerMouth();
-
-        if (Input.GetMouseButtonUp(2))
-            CloseSingerMouth();
+        // Debug Stuff!!
+        //if (Input.GetMouseButtonUp(0))
+        //    m_zoomingOut = !m_zoomingOut;
+        //if (Input.GetMouseButtonUp(1))
+        //    OpenSingerMouth();
+        //if (Input.GetMouseButtonUp(2))
+        //    CloseSingerMouth();
 
         if (m_zoomingOut)
         {
@@ -86,7 +98,16 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Camera.main.transform.position = m_playerCharacterTransform.position + m_cameraZoomedVector;
+        }
 
+        m_waitTimeBetweenSinging -= Time.deltaTime;
+        if(m_waitTimeBetweenSinging < 0.0f)
+        {
+            if (Random.Range(0, 2) == 0)
+                PlayBadSound();
+            else
+                PlayGoodSound();
         }
     }
 
@@ -98,6 +119,29 @@ public class GameManager : MonoBehaviour
     public void ZoomIn()
     {
         m_zoomingOut = false;
+    }
+
+    public void PlayBadSound()
+    {
+        m_singerAudioSource.clip = m_badSinging[Random.Range(0, m_badSinging.Length)];
+        m_waitTimeBetweenSinging = m_singerAudioSource.clip.length + Random.Range(1.0f, 3.0f);
+        m_singerAudioSource.Play();
+        StartCoroutine(SingNote(m_singerAudioSource.clip.length));
+    }
+
+    public void PlayGoodSound()
+    {
+        m_singerAudioSource.clip = m_goodSinging[Random.Range(0, m_goodSinging.Length)];
+        m_waitTimeBetweenSinging = m_singerAudioSource.clip.length + Random.Range(1.0f, 3.0f);
+        m_singerAudioSource.Play();
+        StartCoroutine(SingNote(m_singerAudioSource.clip.length));
+    }
+
+    private IEnumerator SingNote(float waitTime)
+    {
+        OpenSingerMouth();
+        yield return new WaitForSeconds(waitTime);
+        CloseSingerMouth();
     }
 
     public void OpenSingerMouth()
@@ -130,6 +174,8 @@ public class GameManager : MonoBehaviour
         Camera.main.fieldOfView = Mathf.SmoothStep(m_zoomedInFieldOfView, m_zoomedOutFieldOfView, Mathf.Clamp01(m_zoomProgress));
     
         Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
+
+        m_cleaningAudioSource.volume = Mathf.SmoothStep(1.0f, 0.02f, m_zoomProgress);
     }
 
     private void Success()
