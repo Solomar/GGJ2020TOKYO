@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889681642204529670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: -0.57, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1521376636157403414}
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.542}
+  m_Offset: {x: 0.07678783, y: -0.542}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -113,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.84, y: 0.084}
+  m_Size: {x: 0.9935756, y: 0.08399999}
   m_EdgeRadius: 0
 --- !u!114 &1521376635317289979
 MonoBehaviour:
@@ -173,7 +173,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.049068987, y: -0.12267232}
+  m_Offset: {x: 0.12747803, y: -0.12267232}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -184,7 +184,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9723991, y: 1.2453446}
+  m_Size: {x: 1.1955926, y: 1.2453446}
   m_EdgeRadius: 0
 --- !u!212 &1682772430
 SpriteRenderer:
@@ -337,6 +337,8 @@ MonoBehaviour:
   - Mountable
   pickupClip: {fileID: 8300000, guid: 4829e8bb1c0bac840bb12518f8e5adaf, type: 3}
   dropClip: {fileID: 8300000, guid: 57377589cbed77a40984652a143b4625, type: 3}
+  playerAnimator: {fileID: 1682772429}
+  spriteTransform: {fileID: 1521376635350840249}
   CurrentDirection: 0
 --- !u!1 &4833111941605755903
 GameObject:

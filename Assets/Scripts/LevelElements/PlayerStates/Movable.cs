@@ -71,17 +71,22 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             {
                 player.CurrentDirection = Player.Direction.Left;
                 rigidBody.velocity = new Vector2(-walkingSpeed, rigidBody.velocity.y);
+                player.playerAnimator.SetBool("Moving", true);
+                player.spriteTransform.localScale = new Vector3(1, 1, 1);
             }
             // Right
             else if (axis > 0.1)
             {
                 player.CurrentDirection = Player.Direction.Right;
                 rigidBody.velocity = new Vector2(+walkingSpeed, rigidBody.velocity.y);
+                player.playerAnimator.SetBool("Moving", true);
+                player.spriteTransform.localScale = new Vector3(-1, 1, 1);
             }
             // Stop
             else
             {
                 rigidBody.velocity = new Vector2(0F, rigidBody.velocity.y);
+                player.playerAnimator.SetBool("Moving", false);
             }
 
             // Act

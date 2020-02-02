@@ -52,6 +52,8 @@ namespace Assets.Scripts.LevelElements
         [SerializeField]
         private AudioClip dropClip;
 
+        public Animator playerAnimator;
+        public Transform  spriteTransform;
         /// <summary>
         /// The player's now direction.
         /// </summary>
