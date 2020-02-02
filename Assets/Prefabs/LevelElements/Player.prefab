@@ -313,6 +313,8 @@ MonoBehaviour:
   - HouseObjectTriggerLayer
   LayersForMountableObjects:
   - Mountable
+  pickupClip: {fileID: 8300000, guid: 4829e8bb1c0bac840bb12518f8e5adaf, type: 3}
+  dropClip: {fileID: 8300000, guid: 57377589cbed77a40984652a143b4625, type: 3}
   CurrentDirection: 0
 --- !u!1 &4833111941605755903
 GameObject:
