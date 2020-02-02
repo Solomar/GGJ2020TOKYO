@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 141053861}
   - component: {fileID: 141053860}
   m_Layer: 0
-  m_Name: Music2
+  m_Name: Final Piece Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8059034860083869294, guid: a8b6ec4e5e658254197cc20ce77fdd8a,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2bbcce7e4d8b27c4fa82626105d03467, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d3230727158602f4082d11b12814f552, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -400,7 +400,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &197010281
 GameObject:
@@ -2688,7 +2688,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4217872837385498990, guid: a8b6ec4e5e658254197cc20ce77fdd8a,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0ac8d240735b7ed4eaa2e6139db43b51, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0b7d72b8b025501488f1b81036a3de40, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -7186,7 +7186,7 @@ PrefabInstance:
     - target: {fileID: 1521376636157403414, guid: e3cbca77c8952084e82c551b5d32d4d4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1521376636157403414, guid: e3cbca77c8952084e82c551b5d32d4d4,
         type: 3}
@@ -7275,7 +7275,7 @@ PrefabInstance:
     - target: {fileID: 3784312288969620365, guid: 3610711c9828b2f458a5aee881c0e7b6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3784312288969620365, guid: 3610711c9828b2f458a5aee881c0e7b6,
         type: 3}
@@ -7344,7 +7344,7 @@ PrefabInstance:
     - target: {fileID: 8182692834870522165, guid: 303d56da226db2a4f811920d6a93add8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8182692834870522165, guid: 303d56da226db2a4f811920d6a93add8,
         type: 3}
