@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Backspace))
             Win();
         // Debug Stuff!!
         //if (Input.GetMouseButtonUp(0))
@@ -205,5 +205,6 @@ public class GameManager : MonoBehaviour
     private void Success()
     {
         Debug.Log("YOU DID IT!");
+        Win();
     }
 }
