@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 1521376635350840248}
   - component: {fileID: 1682772430}
   - component: {fileID: 1682772429}
+  - component: {fileID: 1682772431}
   m_Layer: 12
   m_Name: Sprite
   m_TagString: Character
@@ -173,7 +174,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.12747803, y: -0.12267232}
+  m_Offset: {x: 0.12747808, y: -0.12267232}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -184,7 +185,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1955926, y: 1.2453446}
+  m_Size: {x: 1.0822395, y: 1.2453446}
   m_EdgeRadius: 0
 --- !u!212 &1682772430
 SpriteRenderer:
@@ -255,6 +256,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1682772431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521376635350840254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374515d5e0d4ec44eb0ee24718114802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_allClip:
+  - {fileID: 8300000, guid: a9baad74820f9104399c85f0fa41f9a6, type: 3}
+  - {fileID: 8300000, guid: 5ed0190a3be2d9d448079f89ad2f46f2, type: 3}
+  - {fileID: 8300000, guid: 801ac030902bbd748b5970f706cee3f8, type: 3}
+  - {fileID: 8300000, guid: 134c540cf27f45c44b0ae077c79ebb6e, type: 3}
+  - {fileID: 8300000, guid: 31f96a93af703af49ba8083873ddd35e, type: 3}
+  - {fileID: 8300000, guid: 5c48585f87dcff347a73871dcf419b9c, type: 3}
+  - {fileID: 8300000, guid: 9af6608060e7c2d439787ac19d856a82, type: 3}
+  - {fileID: 8300000, guid: 2c5e78202d881ec4bae44d8c63c8a7ca, type: 3}
+  - {fileID: 8300000, guid: 38488e7210dcfc54db5d69c06e3874c7, type: 3}
+  - {fileID: 8300000, guid: e14dedcc27f400a4cb86673f61f739a2, type: 3}
+  - {fileID: 8300000, guid: ea62c6b436b6daf408ac88434d44e406, type: 3}
+  - {fileID: 8300000, guid: b4e5cfda02babe147881f17679c6fd4c, type: 3}
 --- !u!1 &1521376636157403415
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +335,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -328,11 +354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkingSpeed: 4
-  JumpSpeed: 7
+  JumpSpeed: 10
   JumpButtonName: Jump
   ActButtonName: Fire1
-  LayersForPickableObjects:
-  - HouseObjectTriggerLayer
   LayersForMountableObjects:
   - Mountable
   pickupClip: {fileID: 8300000, guid: 4829e8bb1c0bac840bb12518f8e5adaf, type: 3}

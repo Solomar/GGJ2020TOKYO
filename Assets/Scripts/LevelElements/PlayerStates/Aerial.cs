@@ -8,16 +8,19 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     /// </summary>
     public class Aerial : Movable
     {
+
         const float LandingThreshold = +0F;
-        // Update is called once per frame
+
         protected override void Update()
         {
             base.Update();
 
+            playerReference.playerAnimator.SetBool("Jumping", true);
             // Check that the player is standing or has landed
             BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
             if (bottomChecker.Landing && gameObject.GetComponent<Rigidbody2D>().velocity.y <= LandingThreshold)
             {
+                playerReference.playerAnimator.SetBool("Jumping", false);
                 ChangeTo<Standing>();
             }
         }

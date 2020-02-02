@@ -29,11 +29,12 @@ namespace Assets.Scripts.LevelElements.PlayerStates
 
         private bool isOnTheFloor, hasGotOffTheFloor;
 
+        protected Player playerReference;
 
         // Start is called before the first frame update
         protected virtual void Start()
         {
-
+            playerReference = GetComponent<Player>();
         }
 
         // Update is called once per frame
@@ -66,31 +67,31 @@ namespace Assets.Scripts.LevelElements.PlayerStates
 
             //FIXME: 遊びの調節
             // Turn and move left
-            var player = GetComponent<Player>();
+
             if (axis < -0.1)
             {
-                player.CurrentDirection = Player.Direction.Left;
+                playerReference.CurrentDirection = Player.Direction.Left;
                 rigidBody.velocity = new Vector2(-walkingSpeed, rigidBody.velocity.y);
-                player.playerAnimator.SetBool("Moving", true);
-                player.spriteTransform.localScale = new Vector3(1, 1, 1);
+                playerReference.playerAnimator.SetBool("Moving", true);
+                playerReference.spriteTransform.localScale = new Vector3(1, 1, 1);
             }
             // Right
             else if (axis > 0.1)
             {
-                player.CurrentDirection = Player.Direction.Right;
+                playerReference.CurrentDirection = Player.Direction.Right;
                 rigidBody.velocity = new Vector2(+walkingSpeed, rigidBody.velocity.y);
-                player.playerAnimator.SetBool("Moving", true);
-                player.spriteTransform.localScale = new Vector3(-1, 1, 1);
+                playerReference.playerAnimator.SetBool("Moving", true);
+                playerReference.spriteTransform.localScale = new Vector3(-1, 1, 1);
             }
             // Stop
             else
             {
                 rigidBody.velocity = new Vector2(0F, rigidBody.velocity.y);
-                player.playerAnimator.SetBool("Moving", false);
+                playerReference.playerAnimator.SetBool("Moving", false);
             }
 
             // Act
-            if (Input.GetButtonDown(player.ActButtonName))
+            if (Input.GetButtonDown(playerReference.ActButtonName))
             {
                 this.ProcessActButton();
             }
@@ -114,7 +115,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             RaycastHit2D? nearestPickable = null;
             foreach (var objInFront in Physics2D.RaycastAll(pickRange.gameObject.transform.position,
                 player.CurrentDirection == Player.Direction.Left ? Vector2.left : Vector2.right,
-                1.0f))
+                1.5f))
             {
                 Debug.Log(objInFront.collider.gameObject.name);
                 if (objInFront.collider.GetComponentInParent<PickableObject>() == null)
