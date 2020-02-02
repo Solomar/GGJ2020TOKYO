@@ -175,12 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd86d76665e26e4183c759fbc454a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_openedMouthSinger: {fileID: 21300000, guid: ece6805e9b4fade44a23c92be75e3291,
+  m_openedMouthSinger: {fileID: 21300000, guid: 2d685a10a95b9ab40bf05237f95ca8e9,
     type: 3}
-  m_closedMouthSinger: {fileID: 21300000, guid: 335bab6f2b94dcb4eba03670e3dbb7e1,
+  m_closedMouthSinger: {fileID: 21300000, guid: b3bc610031c194e4984c519fe9b899f8,
     type: 3}
   m_zoomedInFieldOfView: 60
-  m_zoomedOutFieldOfView: 80
+  m_zoomedOutFieldOfView: 75
   m_cameraZoomedOutPosition: {fileID: 3784312289839429975}
   m_playerCharacterTransform: {fileID: 0}
   m_singerBackSpriteRenderer: {fileID: 0}

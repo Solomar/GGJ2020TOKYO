@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6783400186366083520}
   - component: {fileID: 9164431184115486660}
   - component: {fileID: 9164431184115486661}
+  - component: {fileID: 875791565}
+  - component: {fileID: 875791572}
   m_Layer: 8
   m_Name: Bathtub
   m_TagString: ObjectiveObject
@@ -29,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6783400186366083521}
-  m_LocalRotation: {x: 0, y: 0, z: -0.0000031011227, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.157997, y: 0.013141811, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -199,6 +201,44 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3606658, y: 0.910841}
   m_EdgeRadius: 0
+--- !u!114 &875791565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783400186366083521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.92672086, y: -0.7432857, z: 0}
+  - {x: 0.8846887, y: -0.7363329, z: 0}
+  - {x: 0.8980562, y: -0.15055987, z: 0}
+  - {x: -0.8869349, y: -0.1334577, z: 0}
+  m_ShapePathHash: 299915775
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -181734
+--- !u!114 &875791572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6783400186366083521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a945745ff39ea647854a8b9b5039577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6783400186852221278
 GameObject:
   m_ObjectHideFlags: 0
