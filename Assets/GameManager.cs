@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// 
     [SerializeField]
+    private AudioSource m_singerAudioSource;
+    [SerializeField]
+    private AudioSource m_cleaningAudioSource;
+    [SerializeField]
     private AudioClip[] m_automatoneClips;
     [SerializeField]
     private AudioClip[] m_coughingClips;
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
     private AudioClip[] m_badSingingClips;
     [SerializeField]
     private AudioClip[] m_badPitchClip;
+    private float m_waitTimeBetweenSinging;
 
     public static GameManager Instance
     {
@@ -64,6 +69,7 @@ public class GameManager : MonoBehaviour
         m_allObjectLocationInScene = FindObjectsOfType<HouseholdObjectLocation>().ToList();
         m_zoomingOut = false;
         m_zoomProgress = 0.0f;
+        m_waitTimeBetweenSinging = 3.0f;
         m_windowArea.AddObserverTriggerEnter(ZoomOut);
         m_windowArea.AddObserverTriggerExit(ZoomIn);
     }
@@ -99,6 +105,13 @@ public class GameManager : MonoBehaviour
         {
             Camera.main.transform.position = m_playerCharacterTransform.position + m_cameraZoomedVector;
         }
+
+        m_waitTimeBetweenSinging -= Time.deltaTime;
+        if(m_waitTimeBetweenSinging < 0.0f)
+        {
+            m_waitTimeBetweenSinging = Random.Range(3.0f, 5.0f);
+            PlayBadSound();
+        }
     }
 
     public void ZoomOut()
@@ -109,6 +122,34 @@ public class GameManager : MonoBehaviour
     public void ZoomIn()
     {
         m_zoomingOut = false;
+    }
+
+    public void PlayBadSound()
+    {
+        switch(Random.Range(0,4))
+        {
+            case 0:
+                m_singerAudioSource.clip = m_automatoneClips[Random.Range(0, m_automatoneClips.Length)];
+                break;
+            case 1:
+                m_singerAudioSource.clip = m_coughingClips[Random.Range(0, m_coughingClips.Length)];
+                break;
+            case 2:
+                m_singerAudioSource.clip = m_badPitchClip[Random.Range(0, m_badPitchClip.Length)];
+                break;
+            case 3:
+                m_singerAudioSource.clip = m_badSingingClips[Random.Range(0, m_badSingingClips.Length)];
+                break;
+        }
+        m_singerAudioSource.Play();
+        StartCoroutine(SingNote(m_singerAudioSource.clip.length));
+    }
+
+    private IEnumerator SingNote(float waitTime)
+    {
+        OpenSingerMouth();
+        yield return new WaitForSeconds(waitTime);
+        CloseSingerMouth();
     }
 
     public void OpenSingerMouth()
@@ -141,6 +182,8 @@ public class GameManager : MonoBehaviour
         Camera.main.fieldOfView = Mathf.SmoothStep(m_zoomedInFieldOfView, m_zoomedOutFieldOfView, Mathf.Clamp01(m_zoomProgress));
     
         Camera.main.transform.position = Vector3.Lerp(m_playerCharacterTransform.position + m_cameraZoomedVector, m_cameraZoomedOutPosition.transform.position, Mathf.Clamp01(m_zoomProgress));
+
+        m_cleaningAudioSource.volume = Mathf.SmoothStep(1.0f, 0.02f, m_zoomProgress);
     }
 
     private void Success()
