@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using System.Linq;
 
 // Very basic game manager lol
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager m_instance;
     private List<HouseholdObjectLocation> m_allObjectLocationInScene = new List<HouseholdObjectLocation>();
+    private List<Light2D> m_allLight2DInScene = new List<Light2D>();
 
     [SerializeField]
     private Transform m_cameraZoomedOutPosition;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         m_allObjectLocationInScene = FindObjectsOfType<HouseholdObjectLocation>().ToList();
+        m_allLight2DInScene = FindObjectsOfType<Light2D>().ToList();
         m_zoomingOut = false;
         m_zoomProgress = 0.0f;
         m_waitTimeBetweenSinging = 3.0f;
@@ -129,11 +132,15 @@ public class GameManager : MonoBehaviour
     public void ZoomOut()
     {
         m_zoomingOut = true;
+        foreach (Light2D light in m_allLight2DInScene)
+            light.enabled = false;
     }
 
     public void ZoomIn()
     {
         m_zoomingOut = false;
+        foreach (Light2D light in m_allLight2DInScene)
+            light.enabled = true;
     }
 
     public void PlayBadSound()

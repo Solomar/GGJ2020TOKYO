@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WhiteTile
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 5408b5d28c82c144d8aa221fcdc68828, type: 3}
-  m_Color: {r: 0.8705883, g: 0.5882353, b: 0.5254902, a: 1}
+  m_Color: {r: 0.6666667, g: 0.5058824, b: 0.47058827, a: 1}
   m_Transform:
     e00: 1
     e01: 0
