@@ -38,13 +38,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889681642204529670}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: -0.44511384, y: -0.11056757}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.5}
+  m_Size: {x: 0.7642108, y: 1.4587793}
   m_EdgeRadius: 0
 --- !u!1 &1521376635317289982
 GameObject:
@@ -174,7 +174,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.12747808, y: -0.12267232}
+  m_Offset: {x: 0.12747806, y: -0.11990869}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -185,7 +185,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0822395, y: 1.2453446}
+  m_Size: {x: 1.0822395, y: 1.2398174}
   m_EdgeRadius: 0
 --- !u!212 &1682772430
 SpriteRenderer:
@@ -363,7 +363,23 @@ MonoBehaviour:
   dropClip: {fileID: 8300000, guid: 57377589cbed77a40984652a143b4625, type: 3}
   playerAnimator: {fileID: 1682772429}
   spriteTransform: {fileID: 1521376635350840249}
+  pickupCollider: {fileID: 5194173902142975252}
+  pickupFilter:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   CurrentDirection: 0
+  CurrentState: {fileID: 0}
 --- !u!1 &4833111941605755903
 GameObject:
   m_ObjectHideFlags: 0

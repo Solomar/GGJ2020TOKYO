@@ -12,14 +12,13 @@ namespace Assets.Scripts.LevelElements.PlayerStates
         /// Changes the player's state.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        protected void ChangeTo<T>() where T : PlayerState
+        protected PlayerState ChangeTo<T>() where T : PlayerState
         {
-#if UNITY_EDITOR
-            Debug.Log($"Player FSM: {this.GetType().Name} -> {typeof(T).Name}");
-#endif
+            //Debug.Log($"Player FSM: {this.GetType().Name} -> {typeof(T).Name}");
 
             Destroy(this);
             gameObject.AddComponent<T>();
+            return GetComponent<PlayerState>();
         }
     }
 }

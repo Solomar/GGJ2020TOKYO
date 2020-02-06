@@ -49,6 +49,8 @@ namespace Assets.Scripts.LevelElements
 
         public Animator playerAnimator;
         public Transform  spriteTransform;
+        public Collider2D pickupCollider;
+        public ContactFilter2D pickupFilter;
         /// <summary>
         /// The player's now direction.
         /// </summary>
@@ -106,7 +108,7 @@ namespace Assets.Scripts.LevelElements
         /// <summary>
         /// The player's currfent state, a part of a FSM.
         /// </summary>
-        private Assets.Scripts.LevelElements.PlayerStates.PlayerState CurrentState;
+        public PlayerStates.PlayerState CurrentState;
 
         /// Init some member variables.
         void Start()
@@ -114,7 +116,7 @@ namespace Assets.Scripts.LevelElements
             // The default state is Standing
             if (this.CurrentState == null)
             {
-                this.CurrentState = gameObject.AddComponent<Assets.Scripts.LevelElements.PlayerStates.Standing>();
+                this.CurrentState = gameObject.AddComponent<PlayerStates.Standing>();
             }
         }
 
@@ -145,8 +147,8 @@ namespace Assets.Scripts.LevelElements
             else
             {
                 var pos = transform.Find("HoldPositionRight").transform.localPosition;
-                if (this.CurrentDirection == Direction.Left)
-                    pos = new Vector3(-pos.x, pos.y, pos.z);
+                //if (this.CurrentDirection == Direction.Left)
+                //    pos = new Vector3(-pos.x, pos.y, pos.z);
                 holder.transform.localPosition = pos;
             }
         }
@@ -172,7 +174,8 @@ namespace Assets.Scripts.LevelElements
                 return;
 
             this.HoldingObject = null;
-            obj.OnPutDown();
+            Debug.Log(GetComponent<PlayerStates.PlayerState>().GetType().Name);
+            obj.OnPutDown(GetComponent<PlayerStates.PlayerState>().GetType().Name == "Aerial");
             SoundManager.Instance.PlaySound(dropClip);
         }
     }

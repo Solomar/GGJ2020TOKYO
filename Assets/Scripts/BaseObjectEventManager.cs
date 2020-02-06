@@ -8,6 +8,6 @@ public class BaseObjectEventManager : MonoBehaviour
 
     public virtual void CharacterEnteredTrigger()
     {
-        Debug.Log("Base Object Event Trigger");
+        //Debug.Log("Base Object Event Trigger");
     }
 }

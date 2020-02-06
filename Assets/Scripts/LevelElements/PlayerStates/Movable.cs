@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// The player's state machines.
@@ -16,6 +17,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
     /// </summary>
     public abstract class Movable : PlayerState
     {
+        public LayerMask layersToPickup;
         /// <summary>
         /// The player's horizontal motion speed.
         /// </summary>
@@ -73,7 +75,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 playerReference.CurrentDirection = Player.Direction.Left;
                 rigidBody.velocity = new Vector2(-walkingSpeed, rigidBody.velocity.y);
                 playerReference.playerAnimator.SetBool("Moving", true);
-                playerReference.spriteTransform.localScale = new Vector3(1, 1, 1);
+                playerReference.transform.localScale = new Vector3(1, 1, 1);
             }
             // Right
             else if (axis > 0.1)
@@ -81,7 +83,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 playerReference.CurrentDirection = Player.Direction.Right;
                 rigidBody.velocity = new Vector2(+walkingSpeed, rigidBody.velocity.y);
                 playerReference.playerAnimator.SetBool("Moving", true);
-                playerReference.spriteTransform.localScale = new Vector3(-1, 1, 1);
+                playerReference.transform.localScale = new Vector3(-1, 1, 1);
             }
             // Stop
             else
@@ -110,24 +112,16 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 player.PutDown();
                 return;
             }
+
             // Search a PickableObject in front of the player character
-            var pickRange = player.transform.Find("PickPoint").GetComponent<Collider2D>();
             RaycastHit2D? nearestPickable = null;
-            foreach (var objInFront in Physics2D.RaycastAll(pickRange.gameObject.transform.position,
-                player.CurrentDirection == Player.Direction.Left ? Vector2.left : Vector2.right,
-                1.5f))
-            {
-                Debug.Log(objInFront.collider.gameObject.name);
-                if (objInFront.collider.GetComponentInParent<PickableObject>() == null)
-                    continue;
-                if (nearestPickable?.distance >= objInFront.distance)
-                    continue;
-                nearestPickable = objInFront;
-            }
-            // Pick it up if one has found
-            if (nearestPickable != null)
-            {
-                player.PickUp(nearestPickable.Value.collider.GetComponentInParent<PickableObject>());
+
+            List<Collider2D> colliderFound = new List<Collider2D>();
+            playerReference.pickupCollider.OverlapCollider(playerReference.pickupFilter, colliderFound);
+            colliderFound.OrderBy(i => i.Distance(playerReference.pickupCollider));
+            if(colliderFound.Count > 0)
+            { 
+                player.PickUp(colliderFound[0].GetComponentInParent<PickableObject>());
             }
         }
     }

@@ -23,13 +23,26 @@ namespace Assets.Scripts.LevelElements
             }
         }
 
-        public void OnPutDown()
+        public void OnPutDown(bool whileJumping = false)
         {
+
             var rb = GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.bodyType = this.originalBodyType;
-                rb.simulated = true;
+                // 10 is the mountable layer
+                if (whileJumping == true && (gameObject.layer == 10 || gameObject.layer == 15))
+                {
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    gameObject.layer = 15; // mounted layer
+                }
+                else
+                {
+                    rb.bodyType = this.originalBodyType;
+                    rb.simulated = true;
+
+                    if(gameObject.layer == 15)
+                        gameObject.layer = 10;
+                }
             }
         }
     }

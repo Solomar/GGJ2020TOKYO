@@ -21,7 +21,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             if (bottomChecker.Landing && gameObject.GetComponent<Rigidbody2D>().velocity.y <= LandingThreshold)
             {
                 playerReference.playerAnimator.SetBool("Jumping", false);
-                ChangeTo<Standing>();
+                playerReference.CurrentState = ChangeTo<Standing>();
             }
         }
     }

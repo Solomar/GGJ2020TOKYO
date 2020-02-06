@@ -25,7 +25,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
             BottomChecker bottomChecker = GetComponentInChildren<BottomChecker>();
             if (!bottomChecker.Landing)
             {
-                ChangeTo<Aerial>();
+                playerReference.CurrentState = ChangeTo<Aerial>();
                 return;
             }
 
@@ -46,7 +46,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 var rb = gameObject.GetComponent<Rigidbody2D>();
                 rb.AddForce(new Vector2(rb.velocity.x, jumpAcceleration), ForceMode2D.Impulse);
 
-                ChangeTo<Aerial>();
+                playerReference.CurrentState = ChangeTo<Aerial>();
             }
         }
     }
