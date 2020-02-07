@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6291635319435308717}
   - component: {fileID: 6155393067214915898}
   - component: {fileID: -674958444093686590}
+  - component: {fileID: 132285216}
   m_Layer: 8
   m_Name: Sofa
   m_TagString: ObjectiveObject
@@ -158,6 +159,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a945745ff39ea647854a8b9b5039577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &132285216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291635319435308716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.9960079, y: -0.41417027, z: 0}
+  - {x: 0.99624586, y: -0.41317952, z: 0}
+  - {x: 0.99567366, y: 0.0823949, z: 0}
+  - {x: -0.9976692, y: 0.08439094, z: 0}
+  m_ShapePathHash: -2043860891
+  m_Mesh: {fileID: 0}
+  m_InstanceId: 15708
 --- !u!1 &6291635319853829683
 GameObject:
   m_ObjectHideFlags: 0

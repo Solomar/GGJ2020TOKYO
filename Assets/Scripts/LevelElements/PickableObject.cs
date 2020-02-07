@@ -33,6 +33,7 @@ namespace Assets.Scripts.LevelElements
                 if (whileJumping == true && (gameObject.layer == 10 || gameObject.layer == 15))
                 {
                     rb.bodyType = RigidbodyType2D.Kinematic;
+                    rb.simulated = true;
                     gameObject.layer = 15; // mounted layer
                 }
                 else
