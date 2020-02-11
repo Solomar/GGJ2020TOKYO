@@ -60,11 +60,27 @@ public class GameManager : MonoBehaviour
         {
             if (m_instance == null)
             {
+                GameObject gameManager = new GameObject("GameManager");
+                DontDestroyOnLoad(gameManager);
+                GameManager gameManagerComponent = gameManager.AddComponent<GameManager>();
+                m_instance = gameManagerComponent;
             }
             return m_instance;
         }
     }
-    
+
+    private void Awake()
+    {
+        if (m_instance != null && m_instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            m_instance = this;
+        }
+    }
+
     void Start()
     {
         m_allObjectLocationInScene = FindObjectsOfType<HouseholdObjectLocation>().ToList();
@@ -133,14 +149,20 @@ public class GameManager : MonoBehaviour
     {
         m_zoomingOut = true;
         foreach (Light2D light in m_allLight2DInScene)
-            light.enabled = false;
+        {
+            if (light.lightType != Light2D.LightType.Global)
+                light.enabled = false;
+        }
     }
 
     public void ZoomIn()
     {
         m_zoomingOut = false;
         foreach (Light2D light in m_allLight2DInScene)
-            light.enabled = true;
+        {
+            if(light.lightType != Light2D.LightType.Global)
+                light.enabled = true;
+        }
     }
 
     public void PlayBadSound()
@@ -184,8 +206,9 @@ public class GameManager : MonoBehaviour
         {
             if (!objectLocation.HasAssignedObject)
                 break;
+            Success();
         }
-        Success();
+        
     }
 
     bool doOnce = true;
