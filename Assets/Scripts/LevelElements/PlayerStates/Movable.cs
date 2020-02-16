@@ -76,6 +76,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 rigidBody.velocity = new Vector2(-walkingSpeed, rigidBody.velocity.y);
                 playerReference.playerAnimator.SetBool("Moving", true);
                 playerReference.transform.localScale = new Vector3(1, 1, 1);
+                playerReference.holdingObjectTransform.transform.localScale = new Vector3(1, 1, 1);
             }
             // Right
             else if (axis > 0.1)
@@ -84,6 +85,7 @@ namespace Assets.Scripts.LevelElements.PlayerStates
                 rigidBody.velocity = new Vector2(+walkingSpeed, rigidBody.velocity.y);
                 playerReference.playerAnimator.SetBool("Moving", true);
                 playerReference.transform.localScale = new Vector3(-1, 1, 1);
+                playerReference.holdingObjectTransform.transform.localScale = new Vector3(-1, 1, 1);
             }
             // Stop
             else

@@ -49,6 +49,7 @@ namespace Assets.Scripts.LevelElements
 
         public Animator playerAnimator;
         public Transform  spriteTransform;
+        public Transform holdingObjectTransform;
         public Collider2D pickupCollider;
         public ContactFilter2D pickupFilter;
         /// <summary>

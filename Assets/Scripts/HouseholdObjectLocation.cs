@@ -13,6 +13,7 @@ public class HouseholdObjectLocation : MonoBehaviour
     {
         hasAssignedObject = false;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //GetComponent<Collider2D>()
@@ -21,7 +22,20 @@ public class HouseholdObjectLocation : MonoBehaviour
             if (collision.gameObject.GetComponent<BaseObjectEventManager>().objectType == assignedObject)
             {
                 hasAssignedObject = true;
-                GameManager.Instance.ObjectPlacedCorrectly();
+                GameManager.Instance.ObjectPlacementUpdate();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //GetComponent<Collider2D>()
+        if (collision.CompareTag("ObjectiveObject"))
+        {
+            if (collision.gameObject.GetComponent<BaseObjectEventManager>().objectType == assignedObject)
+            {
+                hasAssignedObject = false;
+                GameManager.Instance.ObjectPlacementUpdate();
             }
         }
     }

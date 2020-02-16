@@ -25,9 +25,11 @@ public class HouseholdObjectTriggerHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         //GetComponent<Collider2D>()
         if (collision.CompareTag("Character"))
         {
+            Debug.Log("teststisfa");
             onCharacterTrigger();
         }
     }

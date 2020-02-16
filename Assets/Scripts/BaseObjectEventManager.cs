@@ -6,8 +6,15 @@ public class BaseObjectEventManager : MonoBehaviour
 {
     public ObjectNames objectType;
 
-    public virtual void CharacterEnteredTrigger()
+    public void CharacterEnteredTrigger()
     {
-        //Debug.Log("Base Object Event Trigger");
+
+        Debug.Log(this.GetType());
+        EnterEffect();
+    }
+
+    virtual public void EnterEffect()
+    {
+
     }
 }
