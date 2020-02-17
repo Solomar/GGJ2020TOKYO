@@ -627,6 +627,10 @@
       <Project>{C12CEEC6-100C-58A2-DE36-314E4DE5E40B}</Project>
       <Name>Unity.CollabProxy.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
+      <Project>{CBEC4DCB-1B2B-E03B-0387-393C59967E8B}</Project>
+      <Name>Unity.Postprocessing.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
       <Project>{C540080A-BED7-978E-DDFC-EE09E5DBB722}</Project>
       <Name>Unity.Rider.Editor</Name>
@@ -634,6 +638,10 @@
     <ProjectReference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj">
       <Project>{114AAB78-0DA4-48AB-A359-9E0515221173}</Project>
       <Name>Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
+      <Project>{49FCAFB7-7D0A-B3F6-2171-B4248A94EC21}</Project>
+      <Name>Unity.Postprocessing.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.ShaderGraph.Editor.csproj">
       <Project>{097081EC-B172-781E-F676-D45E858A96D6}</Project>
@@ -647,21 +655,16 @@
       <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
-      <Project>{CBEC4DCB-1B2B-E03B-0387-393C59967E8B}</Project>
-      <Name>Unity.Postprocessing.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
-      <Project>{49FCAFB7-7D0A-B3F6-2171-B4248A94EC21}</Project>
-      <Name>Unity.Postprocessing.Runtime</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CharacterTriggerZone.cs" />
-    <Compile Include="Assets\CorgiAnimationEvents.cs" />
-    <Compile Include="Assets\CorgiTitleBehaviour.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\AudioLoudnessTester.cs" />
     <Compile Include="Assets\Scripts\BaseObjectEventManager.cs" />
+    <Compile Include="Assets\Scripts\BathtubEventManager.cs" />
+    <Compile Include="Assets\Scripts\CharacterTriggerZone.cs" />
+    <Compile Include="Assets\Scripts\CorgiAnimationEvents.cs" />
+    <Compile Include="Assets\Scripts\CorgiTitleBehaviour.cs" />
+    <Compile Include="Assets\Scripts\FadingBitmapShader.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HouseholdObjectLocation.cs" />
     <Compile Include="Assets\Scripts\HouseholdObjectTriggerHandler.cs" />
     <Compile Include="Assets\Scripts\LevelElements\BottomChecker.cs" />
@@ -671,7 +674,7 @@
     <Compile Include="Assets\Scripts\LevelElements\PlayerStates\Movable.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PlayerStates\PlayerState.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PlayerStates\Standing.cs" />
-    <Compile Include="Assets\Scripts\LevelElements\TitleDemoController.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\TitleController.cs" />
     <Compile Include="Assets\Scripts\ObjectNames.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
@@ -679,10 +682,29 @@
     <Compile Include="Assets\Scripts\VFXCam.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Pixelized.shader" />
     <None Include="Assets\Shaders\NewImageEffectShader.shader" />
     <None Include="Assets\Shaders\Pixelization.shader" />
+    <None Include="Assets\Shaders\Pixelized.shader" />
     <None Include="Assets\Shaders\Test.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-With-Fading.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\PolygonChangeShapeWindow.uxml" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteEditor.uss" />
     <None Include="Packages\com.unity.2d.sprite\Editor\UI\SpriteEditor\SpriteFrameModuleInspector.uxml" />

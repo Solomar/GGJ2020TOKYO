@@ -58,8 +58,16 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// UI Related Stuff
     /// </summary>
-    /// 
 
+    [SerializeField]
+    private Animator credits;
+    [SerializeField]
+    private Animator thanks;
+    [SerializeField]
+    private Animator screenFade;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI instructions;
+    
     [SerializeField]
     private TMPro.TextMeshProUGUI m_progressIndicator;
 
@@ -102,6 +110,8 @@ public class GameManager : MonoBehaviour
         m_objectPlacementCount = m_allObjectLocationInScene.Count;
         m_progressIndicator.text = " 0/" + m_objectPlacementCount;
         m_updatedProgress = 0;
+
+        StartCoroutine(IntroCoroutine());
     }
 
     private void OnDestroy()
@@ -246,18 +256,35 @@ public class GameManager : MonoBehaviour
         Win();
     }
 
+    private IEnumerator IntroCoroutine()
+    {
+        yield return new WaitForSeconds(4.0f);
+
+        float fade = 1.0f;
+        while (fade != 0)
+        {
+            fade -= 0.4f * Time.deltaTime;
+            instructions.color = new Color(1f, 1f, 1f, fade);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     private IEnumerator EndingCoroutine()
     {
         m_cleaningAudioSource.Stop();
         m_winningAudio.Play();
         yield return new WaitForSeconds(7.0f);
         OpenSingerMouth();
+        credits.SetTrigger("Appear");
         yield return new WaitForSeconds(64.0f);
+        thanks.SetTrigger("Appear");
         CloseSingerMouth();
         while (m_winningAudio.isPlaying)
         {
             yield return new WaitForEndOfFrame();
         }
-        
+        screenFade.SetTrigger("GameStart");
+        yield return new WaitForSeconds(4.0f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
